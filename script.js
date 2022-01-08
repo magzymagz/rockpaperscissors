@@ -6,17 +6,16 @@ function computerPlay() {
 }
 
 function playRound(playerSelection, computerSelection) {
-    //log if round started
-    console.log("round started")
-
-    //Convert both strings to lower case in case of text formatting
+    //Convert both strings to lower case in case of text formatting. temp-safety. Will probably be removed
     playerSelection = playerSelection.toLowerCase();
     computerSelection = computerSelection.toLowerCase();
+
+    let winner = 0;
 
     //check if the input is actually rock, paper, scissors or something else
     if (playerSelection === "rock" || playerSelection === "paper" || playerSelection === "scissors") {
         
-        let winner = 0;
+        
 
         //If the selections are the same. Winner is set to 0 = draw.
         if (computerSelection === playerSelection) {
@@ -57,7 +56,6 @@ function playRound(playerSelection, computerSelection) {
                     else {
                         winner = 2;
                     }
-                break;
             }
         }
         
@@ -79,9 +77,11 @@ function playRound(playerSelection, computerSelection) {
         }
     
     }
-    
+    // returns 1 from the function = computerWin because user inputted a non-RPS-alternative.
     else {
-        return "Input a valid selection based on official RPS-rules"
+        winner = 1;
+        console.log("Computer given win becuase you inputed " + playerSelection +".");
+        return winner;
     }
 }
 
@@ -96,8 +96,7 @@ function game() {
         let computerSelect = computerPlay();
         let roundWinner = 0;
         playerSelect = playerSelect.toLowerCase();
-        if (playerSelect === "rock" || playerSelect === "paper" || playerSelect === "scissors") {
-            
+          
             roundWinner = playRound(playerSelect, computerSelect);
         
             switch(roundWinner) {
@@ -111,13 +110,6 @@ function game() {
 
                 case 2:
                     playerWon++;
-        }
-
-        }
-        else {
-            computerWon++;
-            console.log("Computer given round win bacuse you inputed " + playerSelect + ".");
-            
         }
     }
 
