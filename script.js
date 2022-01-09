@@ -91,6 +91,7 @@ function game() {
     let draws = 0;
     let gamesCount = 5;
 
+    // loops as many times as gamesCount allows for so that one can manipulate how many rounds that are to be played. 
     for (let index = 0; index < gamesCount; index++) {
         let playerSelect = prompt().toString();
         let computerSelect = computerPlay();
